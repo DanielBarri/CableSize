@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">CableSize</string>
+
+    <!-- Textos en HomeScreen -->
+    <string name="electricTools">Electric tools</string>
+    <string name="wireGaugeCalc">Conductor Size Calculator</string>
+    <string name="shop">Shop</string>
+
+    <!-- Textos en CableSizeCalcScreen -->
+    <string name="electricCharge">Electric charge:</string>
+    <string name="conductorsPerPhase">Conductors per phase:</string>
+    <string name="conductorsInPipe">Conductors in pipe:</string>
+    <string name="temperature">Environmental temperature:</string>
+    <string name="calculate">Calculate</string>
+
+    <!-- Textos en ResultScreen -->
+    <string name="resultados">Resultados</string>
+
+    <!-- Textos en DataSource -->
+    <string name="option1">1 – 3</string>
+    <string name="option2">4 – 6</string>
+    <string name="option3">7 – 9</string>
+    <string name="option4">10 – 20</string>
+    <string name="option5">21 – 30</string>
+    <string name="option6">31 – 40</string>
+    <string name="option7">41 – 999</string>
+
+</resources>
