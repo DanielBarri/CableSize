@@ -1,7 +1,5 @@
 package com.sunen.cablesize.staticdata
 
-import com.sunen.cablesize.R
-
 
 object DataSource {
     val wiresInPipeOptions = listOf(

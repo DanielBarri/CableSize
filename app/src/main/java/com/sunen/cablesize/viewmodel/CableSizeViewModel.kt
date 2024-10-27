@@ -22,14 +22,12 @@ class CableSizeViewModel: ViewModel() {
             }
             ViewModelIDs.ConductorsInPipe.id -> {
                 state = state.copy(conductorsInPipe = value)
-                calculateConductorsInPipeCorrection()
             }
             ViewModelIDs.CondInPipeCorrection.id -> {
                 state = state.copy(condInPipeCorrection = value.toDouble())
             }
             ViewModelIDs.Temperature.id -> {
                 state = state.copy(temperature = value)
-                calculateTemperatureCorrection()
             }
             ViewModelIDs.TemperatureCorrection.id -> {
                 state = state.copy(temperatureCorrection = value.toDouble())
@@ -38,10 +36,11 @@ class CableSizeViewModel: ViewModel() {
                 state = state.copy(recommendedConductor = value)
             }
     }
-
-    //Todo: Funcion para calcular el factor de correccion por numero de conductores en tuberia
+    /**
+     * Función para calcular el factor de corrección por numero de conductores en tubería
+     */
     private fun calculateConductorsInPipeCorrection() {
-        var wiresInPipeOptions = DataSource.wiresInPipeOptions
+        val wiresInPipeOptions = DataSource.wiresInPipeOptions
 
         wiresInPipeOptions.forEach{ numWires ->
             if (state.conductorsInPipe == numWires.first) {
@@ -50,9 +49,11 @@ class CableSizeViewModel: ViewModel() {
         }
     }
 
-    //Todo: Funcion para calcular el factor de correccion por temperatura ambiental
+    /**
+     * Función para calcular el factor de corrección por temperatura ambiental
+     */
     private fun calculateTemperatureCorrection() {
-        var temperatureOptions = DataSource.temperatureOptions
+        val temperatureOptions = DataSource.temperatureOptions
 
         temperatureOptions.forEach{ temp ->
             if (state.temperature in temp.first) {
@@ -62,21 +63,23 @@ class CableSizeViewModel: ViewModel() {
     }
 
     /**
-     * Funcion para calcular la carga con los factores de correccion
+     * Función para calcular la carga con los factores de corrección
      */
     fun calculateCorrectedCharge() {
+        calculateConductorsInPipeCorrection()
+        calculateTemperatureCorrection()
         val electricCharge = state.electricCharge
         val conductorsPerPhase = state.conductorsPerPhase
         val conductorsInPipeCorrectionFactor = state.condInPipeCorrection
         val temperatureCorrectionFactor = state.temperatureCorrection
         val correctedCharge = (electricCharge.toDouble()/(conductorsInPipeCorrectionFactor*temperatureCorrectionFactor))/conductorsPerPhase.toDouble()
-        println("La carga corregida es: " + correctedCharge)
+        println("La carga corregida es: $correctedCharge")
         state = state.copy(correctedCharge = correctedCharge)
 
     }
 
     /**
-     * Todo: Funcion para calcular calibre de conductor recomendado
+     * Función para calcular calibre de conductor recomendado
      */
     fun calculateRecommendedConductor() {
         val tablaNEC = DataSource.tablaNEC
@@ -88,11 +91,5 @@ class CableSizeViewModel: ViewModel() {
         println("Recommended conductor: ${state.recommendedConductor}")
     }
 
-    /**
-     * Funcion para hacer un reset al calculo e iniciar uno nuevo
-     */
-    fun reset() {
-        state = CableSizeState()
-    }
 
 }

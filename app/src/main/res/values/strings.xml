@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">CableSize</string>
 
+    <!-- Textos en Onboarding -->
+
+
     <!-- Textos en HomeScreen -->
     <string name="electricTools">Electric tools</string>
     <string name="wireGaugeCalc">Conductor Size Calculator</string>

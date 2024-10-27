@@ -12,6 +12,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -33,10 +34,11 @@ import com.sunen.cablesize.viewmodel.CableSizeViewModel
 fun CustomDropdown(
     title: String,
     options: List<Pair<String, Double>>,
+    startValue: String,
     onItemSelected: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var selectedText by remember { mutableStateOf(options.firstOrNull()?.first ?: "") }
+    var selectedText by remember { mutableStateOf(startValue) }
     var isExpanded by remember { mutableStateOf(false) }
 
     Row(
@@ -52,7 +54,7 @@ fun CustomDropdown(
             modifier = Modifier.width(150.dp).height(50.dp)
         ) {
             TextField(
-                modifier = Modifier.menuAnchor(),
+                modifier = Modifier.menuAnchor(MenuAnchorType.PrimaryNotEditable, enabled = true),
                 value = selectedText,
                 onValueChange = {},
                 readOnly = true,
@@ -88,6 +90,7 @@ fun ConductorDropDownMenu(cableSizeViewModel: CableSizeViewModel) {
     CustomDropdown(
         title = stringResource(R.string.conductorsInPipe),
         options = conductorsInPipe,
+        startValue = conductorsInPipe[0].first,
         onItemSelected = { selectedValue ->
             cableSizeViewModel.onValue(selectedValue, ViewModelIDs.CondInPipeCorrection.id)
             println("El factor de corrección es: ${cableSizeViewModel.state.condInPipeCorrection}")
@@ -103,6 +106,7 @@ fun TemperatureDropDownMenu(cableSizeViewModel: CableSizeViewModel) {
     CustomDropdown(
         title = stringResource(R.string.temperature),
         options = temperatureOptions,
+        startValue = temperatureOptions[4].first,
         onItemSelected = { selectedValue ->
             cableSizeViewModel.onValue(selectedValue, ViewModelIDs.TemperatureCorrection.id)
             println("El factor de corrección es: ${cableSizeViewModel.state.temperatureCorrection}")

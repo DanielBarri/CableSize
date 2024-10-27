@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.sunen.cablesize.R
 import com.sunen.cablesize.enumerators.ViewIDs
+import com.sunen.cablesize.view.components.CustomSpacer
 import kotlinx.coroutines.delay
 
 @Composable
@@ -26,7 +27,7 @@ fun SplashScreen(navController: NavController) {
     LaunchedEffect(key1 = true) {
         delay(3000)
         navController.popBackStack()
-        navController.navigate(ViewIDs.Home.id)
+        navController.navigate(ViewIDs.Onboarding.id)
     }
 
     Splash()
@@ -44,6 +45,7 @@ fun Splash() {
             contentDescription = "Logo Sunen",
             modifier = Modifier.size(200.dp,200.dp)
         )
+        CustomSpacer(height = 20.dp)
         Text(
             text = "Bienvenid@s",
             fontSize = 30.sp,

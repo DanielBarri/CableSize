@@ -11,19 +11,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.sunen.cablesize.R
 import com.sunen.cablesize.enumerators.ViewIDs
 import com.sunen.cablesize.view.components.BigNavButton
 import com.sunen.cablesize.view.components.CustomSpacer
-import com.sunen.cablesize.view.components.TitleLarge
-import com.sunen.cablesize.viewmodel.CableSizeViewModel
+
 
 @Composable
-fun HomeScreen (navController: NavController,
-                cableSizeViewModel: CableSizeViewModel) {
+fun HomeScreen (navController: NavController) {
 
     Column(
         modifier = Modifier
@@ -42,8 +39,6 @@ fun HomeScreen (navController: NavController,
                 modifier = Modifier.size(300.dp,300.dp)
             )
 
-            TitleLarge(stringResource(R.string.electricTools))
-
             CustomSpacer(height = 25.dp)
 
         }
@@ -53,8 +48,10 @@ fun HomeScreen (navController: NavController,
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            BigNavButton(navController, ViewIDs.WireGaugeCalc.id, R.string.wireGaugeCalc)
-            BigNavButton(navController, ViewIDs.Shop.id, R.string.shop)
+            BigNavButton(navController, ViewIDs.WireGaugeCalc.id, ViewIDs.WireGaugeCalc.tag)
+            //BigNavButton(navController, ViewIDs.Shop.id, R.string.shop)
+            BigNavButton(navController, ViewIDs.NewFeatures.id, ViewIDs.NewFeatures.tag)
+
         }
     }
 }
