@@ -10,10 +10,10 @@
     <string name="shop">Shop</string>
 
     <!-- Textos en CableSizeCalcScreen -->
-    <string name="electricCharge">Electric charge:</string>
+    <string name="electricCharge">Electric charge (A):</string>
     <string name="conductorsPerPhase">Conductors per phase:</string>
     <string name="conductorsInPipe">Conductors in pipe:</string>
-    <string name="temperature">Environmental temperature:</string>
+    <string name="temperature">Environmental temperature (°C):</string>
     <string name="calculate">Calculate</string>
 
     <!-- Textos en ResultScreen -->
